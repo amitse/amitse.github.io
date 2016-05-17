@@ -1,2 +1,0 @@
-# amitse.github.io
-portfolio
