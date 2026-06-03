@@ -22,6 +22,8 @@ module.exports = function (eleventyConfig) {
       "ai-dev-daily": "🤖 AI Dev Daily",
       "a11y-ai-daily": "♿ A11y × AI Daily",
       "agent-mcp-weekly": "🔌 Agent & MCP Weekly",
+      "industry-trends": "📈 Industry Trends",
+      "industry-insights": "🧠 Industry Insights",
     };
     return labels[slug] || slug;
   });
@@ -43,7 +45,17 @@ module.exports = function (eleventyConfig) {
   // Collections: one per newsletter + all posts
   eleventyConfig.addCollection("allPosts", (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("src/{ai-dev-daily,a11y-ai-daily,agent-mcp-weekly}/*.md")
+      .getFilteredByGlob("src/{ai-dev-daily,a11y-ai-daily,agent-mcp-weekly,industry-trends,industry-insights}/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+  eleventyConfig.addCollection("industry-trends", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("src/industry-trends/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+  eleventyConfig.addCollection("industry-insights", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("src/industry-insights/*.md")
       .sort((a, b) => b.date - a.date);
   });
   eleventyConfig.addCollection("aiDevDaily", (collectionApi) => {
