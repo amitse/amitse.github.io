@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: "🔌 Agent & MCP Weekly"
+---
+<div class="index-intro">
+  <p>Weekly briefings on AI agent frameworks and the Model Context Protocol ecosystem.</p>
+</div>
+
+{% if collections.agentMcpWeekly.length %}
+<ul class="post-list">
+  {% for post in collections.agentMcpWeekly %}
+  <li class="post-list__item">
+    <div class="post-list__label">Edition {{ post.data.edition }}</div>
+    <h2 class="post-list__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+    <div class="post-list__meta">
+      <span>{{ post.date | readableDate }}</span>
+    </div>
+    {% if post.data.summary %}<p class="post-list__excerpt">{{ post.data.summary }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="empty-state">First edition pending — Mondays.</div>
+{% endif %}

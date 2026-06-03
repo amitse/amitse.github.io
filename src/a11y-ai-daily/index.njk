@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: "♿ A11y × AI Daily"
+---
+<div class="index-intro">
+  <p>Daily briefings on AI applied to accessibility — tools, research, standards, community.</p>
+</div>
+
+{% if collections.a11yAiDaily.length %}
+<ul class="post-list">
+  {% for post in collections.a11yAiDaily %}
+  <li class="post-list__item">
+    <div class="post-list__label">Edition {{ post.data.edition }}</div>
+    <h2 class="post-list__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+    <div class="post-list__meta">
+      <span>{{ post.date | readableDate }}</span>
+    </div>
+    {% if post.data.summary %}<p class="post-list__excerpt">{{ post.data.summary }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="empty-state">First edition pending.</div>
+{% endif %}

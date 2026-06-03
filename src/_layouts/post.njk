@@ -1,0 +1,44 @@
+---
+layout: base.njk
+---
+<article>
+  <header class="post-header">
+    <span class="post-header__label">{{ newsletter | newsletterLabel }}</span>
+    <h1 class="post-header__title">{{ title }}</h1>
+    <div class="post-header__meta">
+      <span class="post-header__date">{{ page.date | readableDate }}</span>
+      {% if edition %}<span class="post-header__edition">Edition {{ edition }}</span>{% endif %}
+    </div>
+  </header>
+
+  {% include "colophon.njk" %}
+
+  <div class="post-body">
+    {{ content | safe }}
+  </div>
+
+  {% if sources and sources.length %}
+  <div class="source-tags">
+    {% for source in sources %}
+    <span class="source-tag">{{ source }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <nav class="post-nav">
+    <div class="post-nav__prev">
+      {% set prevPost = collections.allPosts | getPreviousCollectionItem(page) %}
+      {% if prevPost %}
+        <span class="post-nav__label">← Previous</span>
+        <a href="{{ prevPost.url }}">{{ prevPost.data.title }}</a>
+      {% endif %}
+    </div>
+    <div class="post-nav__next">
+      {% set nextPost = collections.allPosts | getNextCollectionItem(page) %}
+      {% if nextPost %}
+        <span class="post-nav__label">Next →</span>
+        <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+      {% endif %}
+    </div>
+  </nav>
+</article>
