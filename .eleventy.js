@@ -19,11 +19,11 @@ module.exports = function (eleventyConfig) {
   // Newsletter label filter
   eleventyConfig.addFilter("newsletterLabel", (slug) => {
     const labels = {
-      "ai-dev-daily": "🤖 AI Dev Daily",
-      "a11y-ai-daily": "♿ A11y × AI Daily",
-      "agent-mcp-weekly": "🔌 Agent & MCP Weekly",
-      "industry-trends": "📈 Industry Trends",
-      "industry-insights": "🧠 Industry Insights",
+      "ai-dev-daily": "AI Dev Daily",
+      "a11y-ai-daily": "A11y × AI",
+      "agent-mcp-weekly": "Agent & MCP",
+      "industry-trends": "Industry Trends",
+      "industry-insights": "Industry Insights",
     };
     return labels[slug] || slug;
   });

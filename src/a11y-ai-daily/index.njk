@@ -1,24 +1,28 @@
 ---
 layout: base.njk
-title: "♿ A11y × AI Daily"
+title: A11y × AI
+newsletter: a11y-ai-daily
 ---
-<div class="index-intro">
-  <p>Daily briefings on AI applied to accessibility — tools, research, standards, community.</p>
-</div>
+<div class="channel-index" data-channel="a11y-ai-daily">
+  <header class="channel-index__header">
+    <p class="channel-index__sig">02</p>
+    <h1 class="channel-index__name">A11y × AI</h1>
+    <p class="channel-index__beat">Where accessibility and artificial intelligence intersect — tools, research, standards, friction, and progress. Tue, Thu.</p>
+    <a href="/" class="channel-index__back">← All channels</a>
+  </header>
 
-{% if collections.a11yAiDaily.length %}
-<ul class="post-list">
-  {% for post in collections.a11yAiDaily %}
-  <li class="post-list__item">
-    <div class="post-list__label">Edition {{ post.data.edition }}</div>
-    <h2 class="post-list__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-    <div class="post-list__meta">
-      <span>{{ post.date | readableDate }}</span>
-    </div>
-    {% if post.data.summary %}<p class="post-list__excerpt">{{ post.data.summary }}</p>{% endif %}
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<div class="empty-state">First edition pending.</div>
-{% endif %}
+  {% if collections.a11yAiDaily.length %}
+  <ol class="channel-post-list" reversed>
+    {% for post in collections.a11yAiDaily %}
+    <li class="channel-post-item">
+      <span class="channel-post-item__date">{{ post.date | readableDate }}</span>
+      {% if post.data.edition %}<span class="channel-post-item__edition">No. {{ post.data.edition }}</span>{% endif %}
+      <h2 class="channel-post-item__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      {% if post.data.summary %}<p class="channel-post-item__summary">{{ post.data.summary }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty-state">First edition pending.</p>
+  {% endif %}
+</div>
