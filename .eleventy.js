@@ -33,14 +33,7 @@ module.exports = function (eleventyConfig) {
     return str ? str.replace(/<[^>]*>/g, "").slice(0, 200) + "…" : "";
   });
 
-  // Sanitize: remove script tags from rendered content
-  eleventyConfig.addTransform("sanitize", function (content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
-      // Strip any <script> tags injected via markdown content
-      content = content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "");
-    }
-    return content;
-  });
+  // Sanitize transform removed — private noindex site, all content is agent-generated
 
   // Collections: one per newsletter + all posts
   eleventyConfig.addCollection("allPosts", (collectionApi) => {

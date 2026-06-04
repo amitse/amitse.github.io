@@ -51,25 +51,25 @@
   --bg-alt:       oklch(0.95 0.004 255);
   --surface:      oklch(0.92 0.004 255);
   --ink:          oklch(0.13 0.012 255);
-  --ink-muted:    oklch(0.40 0.010 255);
-  --ink-faint:    oklch(0.60 0.008 255);
+  --ink-muted:    oklch(0.35 0.010 255);
+  --ink-faint:    oklch(0.45 0.008 255);
   --rule:         oklch(0.87 0.005 255);
 
-  /* Global accent — slightly deeper for contrast on white */
-  --accent:       oklch(0.55 0.16 30);
-  --accent-dim:   oklch(0.93 0.04 30);
+  /* Global accent — terracotta, passes 4.5:1 on white */
+  --accent:       oklch(0.48 0.14 30);
+  --accent-dim:   oklch(0.94 0.03 30);
 
-  /* Channel accents — deepened for 4.5:1 on white */
-  --ch-ai-dev-daily:          oklch(0.48 0.17 225);
-  --ch-ai-dev-daily-dim:      oklch(0.94 0.04 225);
-  --ch-a11y-ai-daily:         oklch(0.44 0.16 150);
-  --ch-a11y-ai-daily-dim:     oklch(0.94 0.04 150);
-  --ch-agent-mcp-weekly:      oklch(0.45 0.18 290);
-  --ch-agent-mcp-weekly-dim:  oklch(0.94 0.04 290);
-  --ch-industry-trends:       oklch(0.55 0.16 50);
-  --ch-industry-trends-dim:   oklch(0.94 0.04 50);
-  --ch-industry-insights:     oklch(0.48 0.17 18);
-  --ch-industry-insights-dim: oklch(0.94 0.04 18);
+  /* Channel accents — all pass 4.5:1 on bg=0.98 */
+  --ch-ai-dev-daily:          oklch(0.42 0.16 225);
+  --ch-ai-dev-daily-dim:      oklch(0.94 0.03 225);
+  --ch-a11y-ai-daily:         oklch(0.40 0.15 150);
+  --ch-a11y-ai-daily-dim:     oklch(0.94 0.03 150);
+  --ch-agent-mcp-weekly:      oklch(0.41 0.17 290);
+  --ch-agent-mcp-weekly-dim:  oklch(0.94 0.03 290);
+  --ch-industry-trends:       oklch(0.48 0.14 50);
+  --ch-industry-trends-dim:   oklch(0.94 0.03 50);
+  --ch-industry-insights:     oklch(0.42 0.15 18);
+  --ch-industry-insights-dim: oklch(0.94 0.03 18);
 
   --sun-opacity: 1;
   --moon-opacity: 0;
