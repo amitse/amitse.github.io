@@ -97,7 +97,6 @@
   --text-xl:  clamp(1.3rem, 2.5vw, 1.6rem);
   --text-2xl: clamp(1.6rem, 3.5vw, 2.2rem);
   --text-3xl: clamp(2rem, 5vw, 3rem);
-  --text-hero:clamp(2.5rem, 8vw, 5rem);
 
   --s1:0.25rem;  --s2:0.5rem;   --s3:0.75rem;
   --s4:1rem;     --s6:1.5rem;   --s8:2rem;
@@ -231,31 +230,6 @@ body {
 .masthead__channel:hover {
   color: var(--ch, var(--accent));
   background: var(--ch-dim, var(--accent-dim));
-}
-
-/* ─────────────────────────────────────────────
-   INDEX — HERO
-   ───────────────────────────────────────────── */
-.index-hero {
-  padding: var(--s16) 0 var(--s20);
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: var(--s12);
-}
-.index-hero__headline {
-  font-family: var(--font-display);
-  font-size: var(--text-hero);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  margin-bottom: var(--s6);
-  text-wrap: balance;
-}
-.index-hero__sub {
-  font-size: var(--text-lg);
-  color: var(--ink-muted);
-  font-weight: 300;
-  max-width: 40ch;
 }
 
 /* ─────────────────────────────────────────────
