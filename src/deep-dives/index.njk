@@ -1,0 +1,27 @@
+---
+layout: base.njk
+title: Deep Dives
+newsletter: deep-dives
+---
+<div class="channel-index" data-channel="deep-dives">
+  <header class="channel-index__header">
+    <p class="channel-index__sig">06</p>
+    <h1 class="channel-index__name">Deep Dives</h1>
+    <p class="channel-index__beat">Long-form technical pieces — written on demand, never automated. Architecture, design, tradeoffs, and things worth thinking about carefully.</p>
+    <a href="/" class="channel-index__back">← All channels</a>
+  </header>
+
+  {% if collections.deepDives.length %}
+  <ol class="channel-post-list" reversed>
+    {% for post in collections.deepDives %}
+    <li class="channel-post-item">
+      <span class="channel-post-item__date">{{ post.date | readableDate }}</span>
+      <h2 class="channel-post-item__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      {% if post.data.summary %}<p class="channel-post-item__summary">{{ post.data.summary }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty-state">First piece pending.</p>
+  {% endif %}
+</div>

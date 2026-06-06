@@ -36,6 +36,8 @@
   --ch-industry-trends-dim:   oklch(0.24 0.07 52);
   --ch-industry-insights:     oklch(0.71 0.18 18);
   --ch-industry-insights-dim: oklch(0.21 0.08 18);
+  --ch-deep-dives:            oklch(0.74 0.16 175);
+  --ch-deep-dives-dim:        oklch(0.20 0.07 175);
 
   /* Theme-toggle icon visibility */
   --sun-opacity: 0;
@@ -70,6 +72,8 @@
   --ch-industry-trends-dim:   oklch(0.94 0.03 50);
   --ch-industry-insights:     oklch(0.42 0.15 18);
   --ch-industry-insights-dim: oklch(0.94 0.03 18);
+  --ch-deep-dives:            oklch(0.44 0.14 175);
+  --ch-deep-dives-dim:        oklch(0.94 0.03 175);
 
   --sun-opacity: 1;
   --moon-opacity: 0;
@@ -81,6 +85,7 @@
 [data-channel="agent-mcp-weekly"],[data-ch="agent-mcp-weekly"]{ --ch: var(--ch-agent-mcp-weekly);     --ch-dim: var(--ch-agent-mcp-weekly-dim); }
 [data-channel="industry-trends"], [data-ch="industry-trends"] { --ch: var(--ch-industry-trends);      --ch-dim: var(--ch-industry-trends-dim); }
 [data-channel="industry-insights"],[data-ch="industry-insights"]{ --ch: var(--ch-industry-insights);  --ch-dim: var(--ch-industry-insights-dim); }
+[data-channel="deep-dives"],      [data-ch="deep-dives"]      { --ch: var(--ch-deep-dives);           --ch-dim: var(--ch-deep-dives-dim); }
 
 /* ── Type ── */
 :root {
