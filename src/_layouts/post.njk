@@ -1,14 +1,21 @@
 ---
 layout: base.njk
 ---
-<article>
+<article class="post-article" data-newsletter="{{ newsletter }}">
+
+  <div class="post-channel-bar" style="--ch-accent: var(--ch-{{ newsletter | replace('-', '_') }}, var(--accent))"></div>
+
   <header class="post-header">
-    <span class="post-header__label">{{ newsletter | newsletterLabel }}</span>
-    <h1 class="post-header__title">{{ title }}</h1>
-    <div class="post-header__meta">
+    <div class="post-header__eyeline">
+      <a href="/{{ newsletter }}/" class="post-header__channel-link">{{ newsletter | newsletterLabel }}</a>
+      <span class="post-header__sep">/</span>
       <span class="post-header__date">{{ page.date | readableDate }}</span>
-      {% if edition %}<span class="post-header__edition">Edition {{ edition }}</span>{% endif %}
+      {% if edition %}<span class="post-header__sep">/</span><span class="post-header__edition">No. {{ edition }}</span>{% endif %}
     </div>
+    <h1 class="post-header__title">{{ title }}</h1>
+    {% if summary %}
+    <p class="post-header__summary">{{ summary }}</p>
+    {% endif %}
   </header>
 
   {% include "colophon.njk" %}
@@ -18,27 +25,35 @@ layout: base.njk
   </div>
 
   {% if sources and sources.length %}
-  <div class="source-tags">
-    {% for source in sources %}
-    <span class="source-tag">{{ source }}</span>
-    {% endfor %}
-  </div>
+  <footer class="post-sources">
+    <span class="post-sources__label">Sources</span>
+    <div class="post-sources__list">
+      {% for source in sources %}
+      <span class="source-tag">{{ source }}</span>
+      {% endfor %}
+    </div>
+  </footer>
   {% endif %}
 
   <nav class="post-nav">
-    <div class="post-nav__prev">
-      {% set prevPost = collections.allPosts | getPreviousCollectionItem(page) %}
+    {% set prevPost = collections.allPosts | getPreviousCollectionItem(page) %}
+    {% set nextPost = collections.allPosts | getNextCollectionItem(page) %}
+    <div class="post-nav__cell">
       {% if prevPost %}
-        <span class="post-nav__label">← Previous</span>
-        <a href="{{ prevPost.url }}">{{ prevPost.data.title }}</a>
+        <a href="{{ prevPost.url }}" class="post-nav__link post-nav__link--prev">
+          <span class="post-nav__dir">← Earlier</span>
+          <span class="post-nav__title">{{ prevPost.data.title }}</span>
+        </a>
       {% endif %}
     </div>
-    <div class="post-nav__next">
-      {% set nextPost = collections.allPosts | getNextCollectionItem(page) %}
+    <div class="post-nav__cell post-nav__cell--right">
       {% if nextPost %}
-        <span class="post-nav__label">Next →</span>
-        <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+        <a href="{{ nextPost.url }}" class="post-nav__link post-nav__link--next">
+          <span class="post-nav__dir">Later →</span>
+          <span class="post-nav__title">{{ nextPost.data.title }}</span>
+        </a>
       {% endif %}
     </div>
   </nav>
+
 </article>

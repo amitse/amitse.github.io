@@ -19,11 +19,12 @@ module.exports = function (eleventyConfig) {
   // Newsletter label filter
   eleventyConfig.addFilter("newsletterLabel", (slug) => {
     const labels = {
-      "ai-dev-daily": "🤖 AI Dev Daily",
-      "a11y-ai-daily": "♿ A11y × AI Daily",
-      "agent-mcp-weekly": "🔌 Agent & MCP Weekly",
-      "industry-trends": "📈 Industry Trends",
-      "industry-insights": "🧠 Industry Insights",
+      "ai-dev-daily": "AI Dev Daily",
+      "a11y-ai-daily": "A11y × AI",
+      "agent-mcp-weekly": "Agent & MCP",
+      "industry-trends": "Industry Trends",
+      "industry-insights": "Industry Insights",
+      "deep-dives": "Deep Dives",
     };
     return labels[slug] || slug;
   });
@@ -33,19 +34,12 @@ module.exports = function (eleventyConfig) {
     return str ? str.replace(/<[^>]*>/g, "").slice(0, 200) + "…" : "";
   });
 
-  // Sanitize: remove script tags from rendered content
-  eleventyConfig.addTransform("sanitize", function (content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
-      // Strip any <script> tags injected via markdown content
-      content = content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "");
-    }
-    return content;
-  });
+  // Sanitize transform removed — private noindex site, all content is agent-generated
 
   // Collections: one per newsletter + all posts
   eleventyConfig.addCollection("allPosts", (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("src/{ai-dev-daily,a11y-ai-daily,agent-mcp-weekly,industry-trends,industry-insights}/*.md")
+      .getFilteredByGlob("src/{ai-dev-daily,a11y-ai-daily,agent-mcp-weekly,industry-trends,industry-insights,deep-dives}/*.md")
       .sort((a, b) => b.date - a.date);
   });
   eleventyConfig.addCollection("industry-trends", (collectionApi) => {
@@ -71,6 +65,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("agentMcpWeekly", (collectionApi) => {
     return collectionApi
       .getFilteredByGlob("src/agent-mcp-weekly/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addCollection("deepDives", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("src/deep-dives/*.md")
       .sort((a, b) => b.date - a.date);
   });
 

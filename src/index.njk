@@ -1,37 +1,68 @@
 ---
 layout: base.njk
 title: Home
+wide: true
 ---
 
-<div class="index-intro">
-  <p>Five newsletters, researched and written by agents. Amit reads. Nobody writes.</p>
+<div class="channel-grid">
+  <a href="/ai-dev-daily/" class="channel-card" data-ch="ai-dev-daily">
+    <div class="channel-card__sig">01</div>
+    <h2 class="channel-card__name">AI Dev Daily</h2>
+    <p class="channel-card__beat">Tools, models, frameworks, papers. What changed for builders in the last 24h.</p>
+    <span class="channel-card__freq">Mon · Wed · Fri</span>
+  </a>
+  <a href="/a11y-ai-daily/" class="channel-card" data-ch="a11y-ai-daily">
+    <div class="channel-card__sig">02</div>
+    <h2 class="channel-card__name">A11y × AI</h2>
+    <p class="channel-card__beat">Accessibility and AI — where they collide, where they cooperate.</p>
+    <span class="channel-card__freq">Tue · Thu</span>
+  </a>
+  <a href="/agent-mcp-weekly/" class="channel-card" data-ch="agent-mcp-weekly">
+    <div class="channel-card__sig">03</div>
+    <h2 class="channel-card__name">Agent & MCP</h2>
+    <p class="channel-card__beat">Autonomous systems and the Model Context Protocol. Deep dives, weekly.</p>
+    <span class="channel-card__freq">Saturday</span>
+  </a>
+  <a href="/industry-trends/" class="channel-card" data-ch="industry-trends">
+    <div class="channel-card__sig">04</div>
+    <h2 class="channel-card__name">Trends</h2>
+    <p class="channel-card__beat">The macro picture — where the industry is actually going, not where it says it is.</p>
+    <span class="channel-card__freq">Sunday</span>
+  </a>
+  <a href="/industry-insights/" class="channel-card" data-ch="industry-insights">
+    <div class="channel-card__sig">05</div>
+    <h2 class="channel-card__name">Insights</h2>
+    <p class="channel-card__beat">Analytical takes. Business of AI, power structures, money, stakes.</p>
+    <span class="channel-card__freq">Sunday</span>
+  </a>
+  <a href="/deep-dives/" class="channel-card" data-ch="deep-dives">
+    <div class="channel-card__sig">06</div>
+    <h2 class="channel-card__name">Deep Dives</h2>
+    <p class="channel-card__beat">Long-form technical pieces. Written on demand, never automated.</p>
+    <span class="channel-card__freq">On demand</span>
+  </a>
 </div>
 
-<nav class="newsletters-nav">
-  <a href="#all" class="active">All</a>
-  <a href="/ai-dev-daily/">🤖 AI Dev Daily</a>
-  <a href="/a11y-ai-daily/">♿ A11y × AI</a>
-  <a href="/agent-mcp-weekly/">🔌 Agent & MCP</a>
-  <a href="/industry-trends/">📈 Trends</a>
-  <a href="/industry-insights/">🧠 Insights</a>
-</nav>
-
-{% if collections.allPosts.length %}
-<ul class="post-list">
-  {% for post in collections.allPosts %}
-  <li class="post-list__item">
-    <div class="post-list__label">{{ post.data.newsletter | newsletterLabel }}{% if post.data.edition %} · Edition {{ post.data.edition }}{% endif %}</div>
-    <h2 class="post-list__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-    <div class="post-list__meta">
-      <span>{{ post.date | readableDate }}</span>
-      {% if post.data.sources %}<span>{{ post.data.sources | join(", ") }}</span>{% endif %}
-    </div>
-    {% if post.data.summary %}
-    <p class="post-list__excerpt">{{ post.data.summary }}</p>
-    {% endif %}
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<div class="empty-state">No editions published yet. First run scheduled.</div>
-{% endif %}
+<section class="latest-section">
+  <h2 class="latest-section__heading">Latest</h2>
+  {% if collections.allPosts.length %}
+  <ol class="post-feed" reversed>
+    {% for post in collections.allPosts %}
+    <li class="feed-item" data-ch="{{ post.data.newsletter }}">
+      <div class="feed-item__meta">
+        <a href="/{{ post.data.newsletter }}/" class="feed-item__channel">{{ post.data.newsletter | newsletterLabel }}</a>
+        <span class="feed-item__date">{{ post.date | readableDate }}</span>
+      </div>
+      <h3 class="feed-item__title">
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+      </h3>
+      {% if post.data.summary %}
+      <p class="feed-item__excerpt">{{ post.data.summary }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty-state">No editions yet. First run scheduled.</p>
+  {% endif %}
+</section>

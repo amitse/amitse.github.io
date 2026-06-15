@@ -1,24 +1,28 @@
 ---
 layout: base.njk
-title: "🔌 Agent & MCP Weekly"
+title: Agent & MCP
+newsletter: agent-mcp-weekly
 ---
-<div class="index-intro">
-  <p>Weekly briefings on AI agent frameworks and the Model Context Protocol ecosystem.</p>
-</div>
+<div class="channel-index" data-channel="agent-mcp-weekly">
+  <header class="channel-index__header">
+    <p class="channel-index__sig">03</p>
+    <h1 class="channel-index__name">Agent & MCP</h1>
+    <p class="channel-index__beat">Autonomous systems and the Model Context Protocol — architecture, patterns, tooling, ecosystem moves. Deep dives, Saturdays.</p>
+    <a href="/" class="channel-index__back">← All channels</a>
+  </header>
 
-{% if collections.agentMcpWeekly.length %}
-<ul class="post-list">
-  {% for post in collections.agentMcpWeekly %}
-  <li class="post-list__item">
-    <div class="post-list__label">Edition {{ post.data.edition }}</div>
-    <h2 class="post-list__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-    <div class="post-list__meta">
-      <span>{{ post.date | readableDate }}</span>
-    </div>
-    {% if post.data.summary %}<p class="post-list__excerpt">{{ post.data.summary }}</p>{% endif %}
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<div class="empty-state">First edition pending — Mondays.</div>
-{% endif %}
+  {% if collections.agentMcpWeekly.length %}
+  <ol class="channel-post-list" reversed>
+    {% for post in collections.agentMcpWeekly %}
+    <li class="channel-post-item">
+      <span class="channel-post-item__date">{{ post.date | readableDate }}</span>
+      {% if post.data.edition %}<span class="channel-post-item__edition">No. {{ post.data.edition }}</span>{% endif %}
+      <h2 class="channel-post-item__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      {% if post.data.summary %}<p class="channel-post-item__summary">{{ post.data.summary }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty-state">First edition pending.</p>
+  {% endif %}
+</div>

@@ -1,29 +1,29 @@
 ---
 layout: base.njk
 title: Industry Trends
-description: "Data-driven weekly signals: what's moving in AI-assisted development, accessibility tooling, and the agent ecosystem."
+newsletter: industry-trends
 ---
+<div class="channel-index" data-channel="industry-trends">
+  <header class="channel-index__header">
+    <p class="channel-index__sig">04</p>
+    <h1 class="channel-index__name">Industry Trends</h1>
+    <p class="channel-index__beat">The macro picture — where the industry is actually going, not where it says it is. Data signals, funding moves, adoption curves. Sundays.</p>
+    <a href="/" class="channel-index__back">← All channels</a>
+  </header>
 
-<header class="newsletter-header">
-  <div class="newsletter-label">Weekly</div>
-  <h1>Industry Trends</h1>
-  <p class="newsletter-desc">Data-driven weekly signals — GitHub star velocity, funding rounds, benchmark shifts, adoption curves. What's actually moving in AI dev, accessibility tooling, and the agent ecosystem.</p>
-  <p class="ai-disclaimer">⚠️ AI-generated from public web sources. Not authored by Amit. Personal briefing tool to keep up with the space.</p>
-</header>
-
-<main>
-{% set posts = collections["industry-trends"] %}
-{% if posts and posts.length > 0 %}
-  <ol class="post-list" reversed>
-  {% for post in posts | reverse %}
-    <li>
-      <time>{{ post.date | readableDate }}</time>
-      <a href="{{ post.url }}">{{ post.data.title }}</a>
-      {% if post.data.summary %}<p class="summary">{{ post.data.summary }}</p>{% endif %}
+  {% set posts = collections["industry-trends"] %}
+  {% if posts and posts.length %}
+  <ol class="channel-post-list" reversed>
+    {% for post in posts %}
+    <li class="channel-post-item">
+      <span class="channel-post-item__date">{{ post.date | readableDate }}</span>
+      {% if post.data.edition %}<span class="channel-post-item__edition">No. {{ post.data.edition }}</span>{% endif %}
+      <h2 class="channel-post-item__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      {% if post.data.summary %}<p class="channel-post-item__summary">{{ post.data.summary }}</p>{% endif %}
     </li>
-  {% endfor %}
+    {% endfor %}
   </ol>
-{% else %}
+  {% else %}
   <p class="empty-state">First edition pending.</p>
-{% endif %}
-</main>
+  {% endif %}
+</div>
